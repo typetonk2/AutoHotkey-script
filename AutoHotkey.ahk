@@ -38,14 +38,12 @@ if WinExist("ahk_class Vim") {
   WinActivate
 }
 return ; }}}
-; msys/mintty{{{
+; WSL{{{
 #c::
-; if WinExist("ahk_class mintty") {
 if WinExist("ahk_exe ubuntu.exe") {
   WinActivate
 } else {
-  ; Run, "%USERPROFILE%\AppData\Local\wsltty\Ubuntu~.bat"
-  Run, "C:\Users\ton\Desktop\Ubuntu.lnk"
+  Run, "%USERPROFILE%\Desktop\Ubuntu.lnk"
 }
 return ; }}}
 ;}}}
@@ -188,15 +186,6 @@ return ; }}}
 #IfWinActive; }}}
 ;firefox; {{{
 #IfWinActive ahk_class MozillaWindowClass
-  ; !d:: ; 生放送でコメント入力欄にフォーカスする
-  ;   MouseGetPos, nowX, nowY
-  ;   WinGetPos x, y, width, height
-  ;   xx := width - 50
-  ;   ; yy := height - 38 ; Vimperator
-  ;   yy := height - 20 ; その他
-  ;   MouseClick, left, %xx%, %yy%, 2
-  ;   MouseMove, %nowX%, %nowY%
-  ;   return
   !c:: ; 生放送でコメントを入力する
     SetKeyDelay, 100
     WinGetPos x, y, width, height
