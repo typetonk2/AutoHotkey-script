@@ -33,7 +33,7 @@ if WinExist("ahk_class Vim") {
 } else {
   ; Run, %USERPROFILE%\program\vim\gvim.exe
   ; WinWait, ahk_class Vim
-  Run, %USERPROFILE%\program\Neovim\bin\nvim-qt.exe --geometry 800x600
+  Run, %USERPROFILE%\program\Neovim\bin\nvim-qt.exe --no-ext-tabline --geometry 800x600
   WinWait, ahk_exe nvim-qt.exe, , 5
   WinActivate
 }
