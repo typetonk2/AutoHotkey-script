@@ -1,10 +1,12 @@
-; #NoEnv ; Recommended for performance and compatibility with future AutoHotKey releases.
+#NoEnv ; Recommended for performance and compatibility with future AutoHotKey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
-; SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 ; SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory
 
 ; #include IME.ahk
 ; #include lib\IME-utf8.ahk
+
+EnvGet, USERHOME, USERPROFILE
 
 ; Windows10環境では、「管理者で実行」しないとホットキーが有効にならない場合あり。
 ; http://stackoverflow.com/questions/31839062/autohotkey-in-windows-10-hotkeys-not-working-in-some-applications
@@ -19,7 +21,7 @@ If (ErrorLevel=0) {
   StringGetPos,p,v,.
   p-=14
   StringMid,line,v,15,%p%
-  Run,%USERPROFILE%\program\vim\gvim.exe "%A_ScriptFullPath%" +%line%
+  Run,%USERHOME%\program\vim\gvim.exe "%A_ScriptFullPath%" +%line%
   WinWaitNotActive
   WinActivate
 }
@@ -31,9 +33,9 @@ if WinExist("ahk_class Vim") {
 } else if WinExist("ahk_exe nvim-qt.exe") {
   WinActivate
 } else {
-  ; Run, %USERPROFILE%\program\vim\gvim.exe
+  ; Run, %USERHOME%\program\vim\gvim.exe
   ; WinWait, ahk_class Vim
-  Run, %USERPROFILE%\program\Neovim\bin\nvim-qt.exe --no-ext-tabline --geometry 800x600
+  Run, %USERHOME%\program\Neovim\bin\nvim-qt.exe --no-ext-tabline --geometry 800x600
   WinWait, ahk_exe nvim-qt.exe, , 5
   WinActivate
 }
@@ -43,7 +45,7 @@ return ; }}}
 if WinExist("ahk_exe ubuntu.exe") {
   WinActivate
 } else {
-  Run, "%USERPROFILE%\Desktop\Ubuntu.lnk"
+  Run, %A_Desktop%\Ubuntu.lnk
 }
 return ; }}}
 ;}}}
