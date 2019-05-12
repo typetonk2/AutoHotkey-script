@@ -225,17 +225,18 @@ return ; }}}
     yy := height - 30
     ; MsgBox, 0, Enter comment, Wait seconds, 1
     InputBox, comment, Enter comment, Enter comment, then press ENTER.
-    if (comment <>) {
+    if (comment <> "") {
       MouseClick, left, %xx%, %yy%, 1, 0, ,
       clipboard = %comment%
-      ; Send, %comment%
       Send, ^v
-      ; Send, {Ins}{Enter}
-      ; Send, {Ins}{Esc}
       Send, {Enter}
-      MouseClick, left, 500, 500, 1, 0, ,
+      ; MouseClick, left, 500, 500, 1, 0, ,
+    } else {
+      MsgBox, no comment.
     }
+    MouseClick, left, 50, 200 
     return
+  ^[::Send, {Esc}
 #IfWinActive; }}}
 ;everything; {{{
 #IfWinActive ahk_class EVERYTHING
