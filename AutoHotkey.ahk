@@ -40,11 +40,12 @@ if WinExist("ahk_class Vim") {
 return ; }}}
 ; msys/mintty{{{
 #c::
-if WinExist("ahk_class mintty") {
-; if WinExist("ahk_exe ubuntu.exe") {
+; if WinExist("ahk_class mintty") {
+if WinExist("ahk_exe ubuntu.exe") {
   WinActivate
 } else {
-  Run, "%USERPROFILE%\AppData\Local\wsltty\Ubuntu~.bat"
+  ; Run, "%USERPROFILE%\AppData\Local\wsltty\Ubuntu~.bat"
+  Run, "C:\Users\ton\Desktop\Ubuntu.lnk"
 }
 return ; }}}
 ;}}}
