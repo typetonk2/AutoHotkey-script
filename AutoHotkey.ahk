@@ -351,10 +351,10 @@ return ; }}}
 ;}}}
 ;Turn off the monitor. {{{
 #^m::  ; Win+Ctrl+m
-  InputBox, seconds, seconds, seconds, , 100, 100, , , , 5, 5
-  MsgBox, 1, alert, Turn off the monitor after "%seconds%" seconds, %seconds%
-  IfMsgBox, Cancel
+  InputBox, seconds, Timer, Turn off the monitor after the seconds., , 100, 100, , , , 0, 0
+  if (ErrorLevel!=0)
     return
+  Sleep seconds * 1000
   ; Turn Monitor Off:
   SendMessage, 0x112, 0xF170, 2,, Program Manager  ; 0x112 is WM_SYSCOMMAND, 0xF170 is SC_MONITORPOWER.
   ; Note for the above: Use -1 in place of 2 to turn the monitor on.
