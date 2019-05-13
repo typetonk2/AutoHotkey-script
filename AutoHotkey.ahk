@@ -42,10 +42,10 @@ if WinExist("ahk_class Vim") {
 return ; }}}
 ; WSL{{{
 #c::
-if WinExist("ahk_exe ubuntu.exe") {
+if WinExist("ahk_exe wsl.exe") {
   WinActivate
 } else {
-  Run, %A_Desktop%\Ubuntu.lnk
+  Run, wsl.exe
 }
 return ; }}}
 ;}}}
