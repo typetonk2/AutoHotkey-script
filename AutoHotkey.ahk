@@ -85,6 +85,35 @@ return ; }}}
 ;}}}
 
 ;application operability {{{
+;neeview {{{
+#IfWinActive ahk_exe NeeView.exe
+  global break_loop = 0
+  !a::
+    ; ControlGet, xID, Hwnd
+    break_loop = 0
+    InputBox, stime, slide, slide, , 130, 110, , , , 3, 3
+    stime *= 1000
+    if (stime = 0) 
+      return
+    while (break_loop != 1)
+    {
+      IfWinActive, ahk_exe NeeView.exe
+      {
+        ControlSend, , n, ahk_exe NeeView.exe
+      }
+      Sleep, %stime%
+    }
+    return
+  !z::
+    break_loop = 1
+    MsgBox, 0, , stop slide, 1
+    return
+#IfWinActive
+;clipboard history {{{
+#IfWinActive ahk_class AutoHotkeyGUI ahk_exe ClipboardHistory_x64.exe
+  !j::Send, {Down}
+  !k::Send, {Up}
+#IfWinActive ; }}}
 ;fenrir move cursor like vim; {{{
 #IfWinActive ahk_class fenrirMainWindow
   !j::Send, {Down}
