@@ -108,7 +108,7 @@ return ; }}}
     break_loop = 1
     MsgBox, 0, , stop slide, 1
     return
-#IfWinActive
+#IfWinActive ;}}}
 ;clipboard history {{{
 #IfWinActive ahk_class AutoHotkeyGUI ahk_exe ClipboardHistory_x64.exe
   !j::Send, {Down}
@@ -120,28 +120,28 @@ return ; }}}
   !k::Send, {Up}
   !l::Send, {Right}
   !h::Send, {Left}
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;eClip move cursor like vim; {{{
 #IfWinActive ahk_class eClipMainClass
   !j::Send, {Down}
   !k::Send, {Up}
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;excel; {{{
 #IfWinActive ahk_class XLMAIN
   F3 up:: DoubleKey("!{F4}", 200) 
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;word; {{{
 #IfWinActive ahk_class OpusApp
   F3 up:: DoubleKey("!{F4}", 200)
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;powerpoint; {{{
 #IfWinActive ahk_class PP11FrameClass
   F3 up:: DoubleKey("!{F4}", 200)
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;rapture; Not currently in use. {{{
 #IfWinActive ahk_class RaptureWindow
   ESC up:: DoubleKey("!{F4}", 200) 
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;afxw; {{{
 #IfWinActive ahk_class TLogForm
   @::Send, {ESC}
@@ -187,13 +187,13 @@ return ; }}}
   ^u::Send, +{Home}{Del}
   ^k::Send, +{End}{Del}
   ^d::Send, {Delete}
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;afxfazzy {{{
 #IfWinActive ahk_exe afxfazzy.exe
   !j::Send, {Down}
   !k::Send, {Up}
 #IfWinActive ;}}}
-;FenrirFS; {{{
+;FenrirFS {{{
 #IfWinActive ahk_class TFenrirFSMainForm.UnicodeClass
   ^l::
     tmp := IME_GET()
@@ -215,7 +215,7 @@ return ; }}}
   +j::Send, +{Down}
   +k::Send, +{Up}
 #IfWinActive; }}}
-;firefox; {{{
+;firefox {{{
 #IfWinActive ahk_class MozillaWindowClass
   !c:: ; 生放送でコメントを入力する
     SetKeyDelay, 100
@@ -235,7 +235,7 @@ return ; }}}
     }
     return
   ^[::Send, {Esc}
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;chrome {{{
 #IfWinActive ahk_class Chrome_WidgetWin_1
   !c:: ; 生放送でコメントを入力する
@@ -260,10 +260,10 @@ return ; }}}
     return
   ^[::Send, {Esc}
 #IfWinActive; }}}
-;everything; {{{
+;everything {{{
 #IfWinActive ahk_class EVERYTHING
   ^l::Send, {End}
-#IfWinActive; }}}
+#IfWinActive ; }}}
 ;Neovim {{{
 ; When pressing the ESC or C-[, turn off the IME.
 ; ref: https://blog.pepo-le.com/vim-normalmode-imeoff/
