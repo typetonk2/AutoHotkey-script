@@ -42,12 +42,15 @@ if WinExist("ahk_class Vim") {
   WinActivate
 }
 return ; }}}
-; WSL{{{
+; Terminal {{{
 #c::
 if WinExist("ahk_exe wsl.exe") {
   WinActivate
+} else if WinExist("ahk_exe WindowsTerminal.exe") {
+  WinActivate
 } else {
-  Run, wsl.exe
+  ; Run, wsl.exe
+  Run, wt.exe
 }
 return ; }}}
 ;}}}
