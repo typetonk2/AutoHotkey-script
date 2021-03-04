@@ -89,7 +89,6 @@ return ; }}}
 #IfWinActive ahk_exe NeeView.exe
   global break_loop = 0
   !a::
-    ; ControlGet, xID, Hwnd
     break_loop = 0
     InputBox, stime, slide, slide, , 130, 110, , , , 3, 3
     stime *= 1000
@@ -101,12 +100,16 @@ return ; }}}
       {
         ControlSend, , n, ahk_exe NeeView.exe
       }
+      else
+      {
+        break_loop = 1
+      }
       Sleep, %stime%
     }
     return
   !z::
-    break_loop = 1
     MsgBox, 0, , stop slide, 1
+    break_loop = 1
     return
 #IfWinActive ;}}}
 ;clipboard history {{{
