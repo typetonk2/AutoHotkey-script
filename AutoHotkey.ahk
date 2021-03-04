@@ -295,6 +295,16 @@ return ; }}}
   !k::Send, {Up}
 #IfWinActive
 ; }}}
+; PowerLauncher {{{
+#IfWinActive ahk_exe PowerLauncher.exe
+  !j::Send, {Down}
+  !k::Send, {Up}
+  ^h::Send, {BS}
+  ^[::Send, {ESC}
+  ^u::Send, ^a{BS}
+#IfWinActive
+; }}}
+
 ;}}}
 
 ;games {{{
