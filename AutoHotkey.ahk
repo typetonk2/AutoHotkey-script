@@ -32,6 +32,8 @@ if WinExist("ahk_class Vim") {
   WinActivate
 } else if WinExist("ahk_exe nvim-qt.exe") {
   WinActivate
+} else if WinExist("ahk_exe nvim.exe") {
+  WinActivate
 } else {
   ; Run, %USERHOME%\program\vim\gvim.exe
   ; WinWait, ahk_class Vim
