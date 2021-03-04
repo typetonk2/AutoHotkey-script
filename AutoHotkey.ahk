@@ -275,7 +275,7 @@ return ; }}}
 ;Neovim {{{
 ; When pressing the ESC or C-[, turn off the IME.
 ; ref: https://blog.pepo-le.com/vim-normalmode-imeoff/
-#IfWinActive ahk_exe nvim-qt.exe
+#If WinActive("ahk_exe nvim-qt.exe") or WinActive("ahk_exe nvim.exe")
   Esc::
   ^[::
     GoSub, sub_ResetIME
@@ -288,7 +288,7 @@ return ; }}}
       IME_SET(0)
     }
     return
-#IfWinActive ;}}}
+#If ;}}}
 ; KeyPirinha {{{
 #IfWinActive ahk_class keypirinha_wndcls_run
   !j::Send, {Down}
