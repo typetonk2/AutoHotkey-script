@@ -113,6 +113,7 @@ return ; }}}
     }
     return
   !z::
+    if (break_loop = 0)
     MsgBox, 0, , stop slide, 1
     break_loop = 1
     return
