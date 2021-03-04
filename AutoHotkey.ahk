@@ -55,7 +55,7 @@ if WinExist("ahk_exe wsl.exe") {
 return ; }}}
 ;}}}
 
-;Special Mappings {{{
+;keyboard Mappings {{{
 !^h::Send, {Left}
 !^j::Send, {Down}
 !^k::Send, {Up}
@@ -146,7 +146,7 @@ return ; }}}
 #IfWinActive ahk_class PP11FrameClass
   F3 up:: DoubleKey("!{F4}", 200)
 #IfWinActive ; }}}
-;rapture; Not currently in use. {{{
+;rapture; {{{
 #IfWinActive ahk_class RaptureWindow
   ESC up:: DoubleKey("!{F4}", 200) 
 #IfWinActive ; }}}
@@ -289,12 +289,6 @@ return ; }}}
     }
     return
 #IfWinActive ;}}}
-; Wox.exe {{{
-#IfWinActive ahk_exe Wox.exe
-  ^[::Send, {Esc}
-  ^y::Send, +{Home}{Del}
-#IfWinActive
-; }}}
 ; KeyPirinha {{{
 #IfWinActive ahk_class keypirinha_wndcls_run
   !j::Send, {Down}
@@ -305,40 +299,40 @@ return ; }}}
 
 ;games {{{
 #IfWinActive ahk_class Recover the Restarts!
-  s::Left
-  d::Down
-  f::Right
-  e::Up
+  ; s::Left
+  ; d::Down
+  ; f::Right
+  ; e::Up
 #IfWinActive
 ; RPG2000
 #IfWinActive ahk_class TFormLcfGameMain
-  s::Left
-  d::Down
-  f::Right
-  e::Up
-  j::z
-  k::Esc
-  l::LShift
-  w::z
-  r::Esc
+  ; s::Left
+  ; d::Down
+  ; f::Right
+  ; e::Up
+  ; j::z
+  ; k::Esc
+  ; l::LShift
+  ; w::z
+  ; r::Esc
 #IfWinActive
 ; RPGXP, VX
 #IfWinActive ahk_class RGSS Player
-  s::Left
-  d::Down
-  f::Right
-  e::Up
-  j::Enter
-  r::Enter
-  w::Enter
-  k::Esc
-  t::Esc
-  q::Esc
-  l::LShift
-  u::c
-  i::v
-  o::b
-  ,::d
+  ; s::Left
+  ; d::Down
+  ; f::Right
+  ; e::Up
+  ; j::Enter
+  ; r::Enter
+  ; w::Enter
+  ; k::Esc
+  ; t::Esc
+  ; q::Esc
+  ; l::LShift
+  ; u::c
+  ; i::v
+  ; o::b
+  ; ,::d
 #IfWinActive
 ;}}}
 
