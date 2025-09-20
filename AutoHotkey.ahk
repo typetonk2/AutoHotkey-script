@@ -37,10 +37,10 @@ if WinExist("ahk_class Vim") {
 } else if WinExist("ahk_exe Code.exe") {
   WinActivate
 } else {
-  ; Run, %USERHOME%\program\vim\gvim.exe
-  ; WinWait, ahk_class Vim
-  Run, %USERHOME%\program\Neovim\bin\nvim-qt.exe --qwindowgeometry 800x600
-  WinWait, ahk_exe nvim-qt.exe, , 5
+  Run, %USERHOME%\program\vim\gvim.exe
+  WinWait, ahk_class Vim
+  ; Run, %USERHOME%\program\Neovim\bin\nvim-qt.exe --qwindowgeometry 800x600
+  ; WinWait, ahk_exe nvim-qt.exe, , 5
   ; Run, %USERHOME%\program\Neovim\bin\nvim.exe
   ; WinWait, ahk_exe nvim.exe
   WinActivate
@@ -57,6 +57,21 @@ if WinExist("ahk_exe wsl.exe") {
   Run, wt.exe
 }
 return ; }}}
+; Massigra {{{
+^!i::
+if WinExist("ahk_exe MassiGra.exe") {
+  WinActivate
+  Send, +q
+  Send, ^v
+} else if WinActive("ahk_exe chrome.exe") {
+  MouseClick, Right
+  sleep 250
+  Send, y
+}
+sleep 250
+Run, %USERHOME%\program\MassiGra\MassiGra.exe /getclip
+return ; }}}
+
 ;}}}
 
 ;keyboard Mappings {{{
@@ -94,20 +109,25 @@ return ; }}}
 ;}}}
 
 ;application operability {{{
-;neeview {{{
-#IfWinActive ahk_exe NeeView.exe
+;neeview, HoneyView {{{
+#If WinActive("ahk_exe NeeView.exe") || WinActive("ahk_exe HoneyView.exe")
   global break_loop = 0
   !a::
     break_loop = 0
-    InputBox, stime, slide, slide, , 130, 110, , , , 3, 3
+    InputBox, stime, slide, slide, , 130, 110, , , , 3, 2
     stime *= 1000
     if (stime = 0) 
       return
     while (break_loop != 1)
     {
-      IfWinActive, ahk_exe NeeView.exe
+      IfWinActive, ahk_exe NeeVIew.exe
+      ;If WinActive("ahk_exe NeeView.exe") || WinActive("ahk_exe HoneyView.exe")
       {
         ControlSend, , n, ahk_exe NeeView.exe
+      }
+      else IfWinActive, ahk_exe HoneyView.exe
+      {
+        ControlSend, , {Right}, ahk_exe HoneyView.exe
       }
       else
       {
@@ -118,9 +138,11 @@ return ; }}}
     return
   !z::
     if (break_loop = 0)
-    MsgBox, 0, , stop slide, 1
+      MsgBox, 0, , stop slide, 1
     break_loop = 1
     return
+
+  !e::Send, {F2}
 #IfWinActive ;}}}
 ;clipboard history {{{
 #IfWinActive ahk_class AutoHotkeyGUI ahk_exe ClipboardHistory_x64.exe
@@ -142,6 +164,7 @@ return ; }}}
 ;excel; {{{
 #IfWinActive ahk_class XLMAIN
   F3 up:: DoubleKey("!{F4}", 200) 
+  ^e::Send, {F2}
 #IfWinActive ; }}}
 ;word; {{{
 #IfWinActive ahk_class OpusApp
@@ -272,6 +295,11 @@ return ; }}}
     MouseClick, left, %mx%, %my%, 1, 0, ,
     return
   ^[::Send, {Esc}
+  !d::
+    MouseClick, Right
+    Sleep, 300
+    Send, d{Enter}
+    return
 #IfWinActive; }}}
 ;everything {{{
 #IfWinActive ahk_class EVERYTHING
@@ -301,7 +329,7 @@ return ; }}}
 #IfWinActive
 ; }}}
 ; PowerLauncher {{{
-#IfWinActive ahk_exe PowerLauncher.exe
+#IfWinActive ahk_exe PowerToys.PowerLauncher.exe
   !j::Send, {Down}
   !k::Send, {Up}
   ^h::Send, {BS}
@@ -309,6 +337,13 @@ return ; }}}
   ^u::Send, ^a{BS}
 #IfWinActive
 ; }}}
+; LibreOffice; {{{
+#IfWinActive ahk_exe soffice.bin
+  F3 up:: DoubleKey("!{F4}", 200) 
+  ^!e::Send, {F2}
+#IfWinActive ; }}}
+; }}}
+
 
 ;}}}
 
@@ -385,8 +420,8 @@ return ; }}}
   }
   WinMove,ahk_id %whd%,,%x%,%y%,%w%,%h%
   return
-;AlwaysOnTop
-#t::winset, alwaysontop, toggle, A
+;AlwaysOnTop PowerToysで代替可能になった(Ctrl+Win+t)
+; #t::winset, alwaysontop, toggle, A
 ;}}}
 ;Turn off the monitor. {{{
 #^m::  ; Win+Ctrl+m
