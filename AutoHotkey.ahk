@@ -251,49 +251,8 @@ return ; }}}
   +j::Send, +{Down}
   +k::Send, +{Up}
 #IfWinActive; }}}
-;firefox {{{
-#IfWinActive ahk_class MozillaWindowClass
-  !c:: ; 生放送でコメントを入力する
-    SetKeyDelay, 100
-    WinGetPos x, y, width, height
-    xx := width / 2
-    ; yy := height - 50 ; Vimperator
-    yy := height - 20 ; その他
-    InputBox, comment, comment, Input comment and press enter.
-    if (comment <>) {
-      clipboard = %comment%
-      MouseClick, left, %xx%, %yy%, 1, 0, ,
-      ; Send, %comment%
-      Sleep, 500
-      Send, ^v ; In Vimperator environment, change mode to IGNORE.
-      Send, {Enter}
-      MouseClick, left, 500, 500, 1, 0, ,
-    }
-    return
-  ^[::Send, {Esc}
-#IfWinActive ; }}}
 ;chrome {{{
 #IfWinActive ahk_class Chrome_WidgetWin_1
-  !c:: ; 生放送でコメントを入力する
-    SetKeyDelay, 20
-    MouseGetPos, mx, my, mid
-    WinGetPos, x, y, width, height
-    xx := width / 2
-    yy := height - 20
-    ; MsgBox, 0, Enter comment, Wait seconds, 1
-    InputBox, comment, Enter comment, Enter comment, then press ENTER.
-    if (comment <> "") {
-      MouseClick, left, %xx%, %yy%, 1, 0, ,
-      Sleep, 500
-      clipboard = %comment%
-      Send, ^v{Enter}{Enter}
-      ; MouseClick, left, 500, 500, 1, 0, ,
-    } else {
-      MsgBox, no comment.
-    }
-    ; MouseMove, mx, my
-    MouseClick, left, %mx%, %my%, 1, 0, ,
-    return
   ^[::Send, {Esc}
   !d::
     MouseClick, Right
